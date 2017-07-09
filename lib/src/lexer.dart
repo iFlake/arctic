@@ -40,13 +40,25 @@ class Lexer
     {
         while (true)
         {
-            if (findAndJump(">"))
+            if (nextIs(">", jump: true))
                 output.add(new Lexeme(type: LexemeType.tagStartClose));
-            else if (findAndJump("("))
+            else if (nextIs("(", jump: true))
                 output.add(new Lexeme(type: LexemeType.parenthesisOpen));
-            else if (findAndJump(")"))
+            else if (nextIs(")", jump: true))
                 output.add(new Lexeme(type: LexemeType.parenthesisClose));
+            else if (nextIs(",", jump: true))
+                output.add(new Lexeme(type: LexemeType.listSeparator));
+            else
+                //todo
         }
+    }
+
+    bool nextIs(String what, {bool jump})
+    {
+        if (input.substring(position, position + what.length) == what)
+            return true;
+        else
+            return false;
     }
 
     int find(String what)
@@ -71,6 +83,11 @@ class Lexer
 
         position = location;
         return true;
+    }
+
+    void retreat(int lengths)
+    {
+        this.position -= length;
     }
 
     String readChars(int length)

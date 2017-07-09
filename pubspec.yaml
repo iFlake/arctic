@@ -1,0 +1,10 @@
+name: "arctic"
+version: "1.0.0"
+description: "Arctic templating engine"
+author: "Ice Flake"
+
+environment:
+    sdk: ">1.24.0 <2.0.0"
+
+dependencies:
+    meta: "^1.0.5"

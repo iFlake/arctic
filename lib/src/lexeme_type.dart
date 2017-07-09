@@ -1,0 +1,26 @@
+enum LexemeType
+{
+    text,
+    tagStartOpen,
+    tagEndOpen,
+    tagClose,
+    parenthesisOpen,
+    parenthesisClose,
+    listSeparator,
+    identifier,
+    loopFor,
+    loopForeach,
+    loopForeachIn,
+    loopForeachWith,
+    conditionIf,
+    conditionElseIf,
+    conditionElse,
+    literalInteger,
+    literalString,
+    tagOutput,
+    tagBlock,
+    tagExtend,
+    tagPrepend,
+    tagAppend,
+    tagDelete
+}

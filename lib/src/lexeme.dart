@@ -6,6 +6,9 @@ class Lexeme
 {
     final LexemeType type;
     final String value;
+    
+    final int line;
+    final int character;
 
-    Lexeme({this.type, this.value = null});
+    Lexeme({this.type, this.value = null, this.line, this.column});
 }

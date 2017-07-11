@@ -86,6 +86,8 @@ class Lexer
                 output.add(new Lexeme(type: LexemeType.bitwiseShiftLeft, line: line, column: column));
             else if (nextIs(">>", jump: true))
                 output.add(new Lexeme(type: LexemeType.bitwiseShiftRight, line: line, column: column));
+            else if (nextIs("$", jump: true))
+                output.add(new Lexeme(type: LexemeType.tagOutput, line: line, column: column));
             else if (nextIsIdentifier(preceeding: false))
                 output.add(lexIdentifier());
         }
@@ -132,6 +134,65 @@ class Lexer
         }
 
         return identifyIdentifier(identifier);
+    }
+
+    @protected Lexeme identifyIdentifier(String identifier)
+    {
+        switch (identifier)
+        {
+            case "block":
+                return new Lexeme(type: LexemeType.tagBlock, line: line, column: column);
+                break;
+            
+            case "extend":
+                return new Lexeme(tag: LexemeType.tagExtend, line: line, column: column);
+                break;
+            
+            case "prepend":
+                return new Lexeme(tag: LexemeType.tagPrepend, line: line, column: column);
+                break;
+            
+            case "append":
+                return new Lexeme(tag: LexemeType.tagAppend, line: line, column: column);
+                break;
+            
+            case "delete":
+                return new Lexeme(tag: LexemeType.tagDelete, line: line, column: column);
+                break;
+            
+
+            case "for":
+                return new Lexeme(tag: LexemeType.loopFor, line: line, column: column);
+                break;
+            
+            case "foreach":
+                return new Lexeme(tag: LexemeType.loopForeach, line: line, column: column);
+                break;
+
+            case "in":
+                return new Lexeme(tag: LexemeType.loopForeachIn, line: line, column: column);
+                break;
+            
+            case "with":
+                return new Lexeme(tag: LexemeType.loopForeachWith, line: line, column: column);
+                break;
+            
+            case "if":
+                return new Lexeme(tag: LexemeType.conditionIf, line: line, column: column);
+                break;
+            
+            case "elseif":
+                return new Lexeme(tag: LexemeType.conditionElseIf, line: line, column: column);
+                break;
+            
+            case "else":
+                return new Lexeme(tag: LexemeType.conditionElse, line: line, column: column);
+                break;
+
+            default:
+                return new Lexeme(tag: LexemeType.identifier, value: identifier, line: line, column: column);
+                break;
+        }
     }
 
     @protected int find(String what)

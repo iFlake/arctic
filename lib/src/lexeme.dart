@@ -1,5 +1,6 @@
 library arctic.lexer.lexeme;
 
+import "package:arctic/src/lexeme_type.dart";
 export "package:arctic/src/lexeme_type.dart";
 
 class Lexeme
@@ -8,7 +9,11 @@ class Lexeme
     final String value;
     
     final int line;
-    final int character;
+    final int column;
 
-    Lexeme({this.type, this.value = null, this.line, this.column});
+    Lexeme({LexemeType type, String value = null, int line, int column})
+    :   type      = type,
+        value     = value,
+        line      = line,
+        column    = column;
 }

@@ -1,3 +1,5 @@
+library arctic.lexer.lexeme_type;
+
 enum LexemeType
 {
     text,
@@ -18,6 +20,7 @@ enum LexemeType
     bitwiseShiftLeft,
     bitwiseShiftRight,
     tagOutput,
+    child,
     tagBlock,
     tagExtend,
     tagPrepend,
@@ -31,6 +34,6 @@ enum LexemeType
     conditionElseIf,
     conditionElse,
     identifier,
-    literalInteger,
-    literalString,
+    literalNumber,
+    literalString
 }

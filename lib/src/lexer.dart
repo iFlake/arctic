@@ -8,7 +8,9 @@ export "lexer_exception.dart";
 
 class Lexer
 {
+    ///The input which the lexer is to lex.
     final String input;
+    ///The lexed output of [input].
     List<Lexeme> output                          = [];
     
     @protected int position                      = 0;
@@ -41,8 +43,10 @@ class Lexer
         " ", "\t", "\n", "\r", "\0"
     ];
 
+    ///Initializes a lexer with an input. A lexer is meant to be used once.
     Lexer(this.input);
 
+    ///Lexes the [input].
     void lex()
     {
         String builder = "";

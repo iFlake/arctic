@@ -11,6 +11,7 @@ class Lexeme
     final int line;
     final int column;
 
+    ///Creates a lexeme with a type, optionally a value and a location.
     Lexeme({LexemeType type, String value = null, int line, int column})
     :   type      = type,
         value     = value,

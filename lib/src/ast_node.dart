@@ -10,6 +10,7 @@ class AstNode
     final Lexeme lexeme;
     List<AstNode> node;
 
+    ///Creates an abstract syntax tree node of the type [AstNodeType] with either a lexeme or a node.
     AstNode({type, lexeme = null, node = null})
     :   type      = type,
         lexeme    = lexeme,

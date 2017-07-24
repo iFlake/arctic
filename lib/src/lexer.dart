@@ -316,6 +316,15 @@ class Lexer
             case "else":
                 return new Lexeme(type: LexemeType.conditionElse, line: line, column: column);
                 break;
+            
+
+            case "true":
+                return new Lexeme(type: LexemeType.literalBooleanTrue, line: line, column: column);
+                break;
+
+            case "false":
+                return new Lexeme(type: LexemeType.literalBooleanFalse, line: line, column: column);
+                break;
 
 
             default:

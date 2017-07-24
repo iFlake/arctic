@@ -1,7 +1,7 @@
 library arctic.lexer.lexeme;
 
-import "package:arctic/src/lexeme_type.dart";
-export "package:arctic/src/lexeme_type.dart";
+import "lexeme_type.dart";
+export "lexeme_type.dart";
 
 class Lexeme
 {

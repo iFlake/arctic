@@ -32,11 +32,32 @@ Grammar:
         | "<:" "delete" ">" block "<:/" "delete" ">" tag-extend2
         | "<:/" "extend" ">"
 
-    expression:
+    expression
         : "(" expression ")"
+        | "{" map "}"
         | f-q-identifier
+        | math
 
-    f-q-identifier:
+    map
+        : pair
+        | pair "," map
+    
+    pair
+        : identifier ":" expression
+
+    math
+        : expression "+" expression
+        | expression "-" expression
+        | expression "*" expression
+        | expression "/" expression
+        | expression "^^" expression
+        | expression "&" expression
+        | expression "^" expression
+        | expression "|" expression
+        | expression "<<" expression
+        | expression ">>" expression
+
+    f-q-identifier
         : identifier
         | identifier "." fq-identifier
         | identifier "[" expression "]"
@@ -49,8 +70,10 @@ class Parser
 
     @protected int position;
 
+    ///Initializes a parser with an input lexeme list. A parser is meant to be used once.
     Parser(this.input);
 
+    ///Parses the [input].
     void parse()
     {
         while (position < input.length)

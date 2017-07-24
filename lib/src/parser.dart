@@ -71,9 +71,17 @@ class Parser
     @protected int position;
 
     ///Initializes a parser with an input lexeme list. A parser is meant to be used once.
+    ///For example:
+    ///```dart
+    ///Parser parser = new Parser("<:if true>Hello world<:/if>");
+    ///```
     Parser(this.input);
 
     ///Parses the [input].
+    ///For example:
+    ///```dart
+    ///parser.parse();
+    ///```
     void parse()
     {
         while (position < input.length)

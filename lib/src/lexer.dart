@@ -2,9 +2,9 @@ library arctic.lexer;
 
 import "package:meta/meta.dart";
 
-import "package:arctic/src/lexeme.dart";
-import "package:arctic/src/lexer_exception.dart";
-export "package:arctic/src/lexer_exception.dart";
+import "lexeme.dart";
+import "lexer_exception.dart";
+export "lexer_exception.dart";
 
 class Lexer
 {
@@ -12,12 +12,9 @@ class Lexer
     List<Lexeme> output                          = [];
     
     @protected int position                      = 0;
-    @protected int length                        = 1;
 
     @protected int line                          = 1;
     @protected int column                        = 1;
-
-    @protected bool inText                       = false;
 
     @protected static const identifierBegin      = const
     [
@@ -96,6 +93,10 @@ class Lexer
                 output.add(new Lexeme(type: LexemeType.parenthesisOpen, line: line, column: column));
             else if (nextIs(")", jump: true))
                 output.add(new Lexeme(type: LexemeType.parenthesisClose, line: line, column: column));
+            else if (nextIs("[", jump: true))
+                output.add(new Lexeme(type: LexemeType.listOpen, line: line, column: column));
+            else if (nextIs("]", jump: true))
+                output.add(new Lexeme(type: LexemeType.listClose, line: line, column: column));
             else if (nextIs(",", jump: true))
                 output.add(new Lexeme(type: LexemeType.listSeparator, line: line, column: column));
             else if (nextIs("+", jump: true))
@@ -390,23 +391,4 @@ class Lexer
             ++position;
         }
     }
-}
-
-void main()
-{
-  Lexer lxr = new Lexer(
-      """
-      abc<:if xx>xboin
-      dcd</:if -2.45166>xxxx """
-    );
-  lxr.lex();
-  
-  for (var output in lxr.output)
-  {
-    print("---");
-    print("type: ${output.type}");
-    print("value: ${output.value}");
-    print("location: ${output.line}:${output.column}");
-    print("---");
-  }
 }

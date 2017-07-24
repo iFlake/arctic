@@ -1,7 +1,5 @@
 library arctic.lexer_exception;
 
-import "dart:core";
-
 class LexerException implements Exception
 {
     final String message;

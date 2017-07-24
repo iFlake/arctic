@@ -8,6 +8,8 @@ enum LexemeType
     tagClose,
     parenthesisOpen,
     parenthesisClose,
+    mapOpen,
+    mapClose,
     listOpen,
     listClose,
     listSeparator,

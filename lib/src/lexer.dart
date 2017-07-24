@@ -93,6 +93,10 @@ class Lexer
                 output.add(new Lexeme(type: LexemeType.parenthesisOpen, line: line, column: column));
             else if (nextIs(")", jump: true))
                 output.add(new Lexeme(type: LexemeType.parenthesisClose, line: line, column: column));
+            else if (nextIs("{", jump: true))
+                output.add(new Lexeme(type: LexemeType.mapOpen, line: line, column: column));
+            else if (nextIs("}", jump: true))
+                output.add(new Lexeme(type: LexemeType.mapClose, line: line, column: column));
             else if (nextIs("[", jump: true))
                 output.add(new Lexeme(type: LexemeType.listOpen, line: line, column: column));
             else if (nextIs("]", jump: true))

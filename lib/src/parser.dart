@@ -73,7 +73,7 @@ class Parser
     ///Initializes a parser with an input lexeme list. A parser is meant to be used once.
     ///For example:
     ///```dart
-    ///Parser parser = new Parser("<:if true>Hello world<:/if>");
+    ///Parser parser = new Parser(new Lexer("<:if true>Hello world<:/if>")..lex().output);
     ///```
     Parser(this.input);
 
